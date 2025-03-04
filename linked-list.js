@@ -105,7 +105,7 @@ export class LinkedList {
     }
 
     removeAt(index) {
-        if (index >= this.size() || index < 0) return 'Invalid index value. Try again!';
+        if (index >= this.size() || index < 0 || (index === 0 && this.size() === 0)) return null;
 
         let nodesAfter = this.at(index + 1);
         if (index === 0) this.head = nodesAfter;
