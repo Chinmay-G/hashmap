@@ -85,43 +85,37 @@ class HashMap {
         this.size = 0;
     }
 
-    keys() {
+    // Loops over all the entries and returns an array of keys or value or entries
+    loopOver(param) {
+
+        const whatIsIt = function (param, curr) {
+            if (param === 'key') return curr.value.key;
+            else if (param === 'value') return curr.value.value;
+            else if (param === 'key,value') return [curr.value.key, curr.value.value];
+        }
+
         let arr = [];
         for (let bucket of this.buckets) {
             if (!bucket) continue;
             let curr = bucket.head;
             while (curr) {
-                arr.push(curr.value.key);
+                arr.push(whatIsIt(param, curr));
                 curr = curr.nextNode;
             }
         }
         return arr;
+    }
+
+    keys() {
+        return this.loopOver('key');
     }
 
     values() {
-        let arr = [];
-        for (let bucket of this.buckets) {
-            if (!bucket) continue;
-            let curr = bucket.head;
-            while (curr) {
-                arr.push(curr.value.value);
-                curr = curr.nextNode;
-            }
-        }
-        return arr;
+        return this.loopOver('value');
     }
 
     entries() {
-        let arr = [];
-        for (let bucket of this.buckets) {
-            if (!bucket) continue;
-            let curr = bucket.head;
-            while (curr) {
-                arr.push([curr.value.key, curr.value.value]);
-                curr = curr.nextNode;
-            }
-        }
-        return arr;
+        return this.loopOver('key,value');
     }
 
     resize() {
@@ -142,46 +136,73 @@ class HashMap {
 
 }
 const test = new HashMap();
-console.log(test.hash('Rama'));
-console.log(test.hash('Sita'));
-console.log(test.hash('apple'));
-console.log(test.hash('pineapple'));
-console.log(test.hash('banana'));
 
-test.set('apple', 'red');
-test.set('apple', 'green');
-test.set('pineapple', 'yellow');
-test.set('orange', 'orange');
-test.set('oranga', 'orange');
-test.set('orangew', 'orange');
-test.set('oranger', 'orange');
-test.set('oranget', 'orange');
-test.set('orangey', 'orange');
-test.set('orangeo', 'orange');
-test.set('orangei', 'orange');
-test.set('orangel', 'orange');
-test.set('orangeb', 'orange');
-test.set('orangeg', 'orange');
-test.set('orangem', 'orange');
-// test.set('orangev', 'orange');
-// test.set('orangello', 'orange');
-test.set('orangen', 'orange');
+
+test.set('apple', 'red')
+test.set('banana', 'yellow')
+test.set('carrot', 'orange')
+test.set('dog', 'brown')
+test.set('elephant', 'gray')
+test.set('frog', 'green')
+test.set('grape', 'purple')
+test.set('hat', 'black')
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden')
+test.set('moon', 'silver')
+
 console.log(test.buckets);
 
-console.log(test.get('orangenoo')); // null
-console.log(test.get('orangen')); // orange
+test.set('jacket', 'black');
+test.set('hat', 'brown');
 
-console.log(test.has('appleo')); // false
-
-console.log(test.remove('oranga')); // true
-console.log(test.remove('oran')); // false
-console.log(test.buckets);
-
+console.log(test.entries());
+console.log(test.keys());
 console.log(test.length());
 
-// test.clear();
+
+
+// console.log(test.hash('Rama'));
+// console.log(test.hash('Sita'));
+// console.log(test.hash('apple'));
+// console.log(test.hash('pineapple'));
+// console.log(test.hash('banana'));
+
+// test.set('apple', 'red');
+// test.set('apple', 'green');
+// test.set('pineapple', 'yellow');
+// test.set('orange', 'orange');
+// test.set('oranga', 'orange');
+// test.set('orangew', 'orange');
+// test.set('oranger', 'orange');
+// test.set('oranget', 'orange');
+// test.set('orangey', 'orange');
+// test.set('orangeo', 'orange');
+// test.set('orangei', 'orange');
+// test.set('orangel', 'orange');
+// test.set('orangeb', 'orange');
+// test.set('orangeg', 'orange');
+// test.set('orangem', 'orange');
+// // test.set('orangev', 'orange');
+// // test.set('orangello', 'orange');
+// test.set('orangen', 'orange');
 // console.log(test.buckets);
 
-console.log(test.keys());
-console.log(test.values());
-console.log(test.entries());
+// console.log(test.get('orangenoo')); // null
+// console.log(test.get('orangen')); // orange
+
+// console.log(test.has('appleo')); // false
+
+// console.log(test.remove('oranga')); // true
+// console.log(test.remove('oran')); // false
+// console.log(test.buckets);
+
+// console.log(test.length());
+
+// // test.clear();
+// // console.log(test.buckets);
+
+// console.log(test.keys());
+// console.log(test.values());
+// console.log(test.entries());
