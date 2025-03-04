@@ -138,21 +138,6 @@ class HashMap {
                 curr = curr.nextNode;
             }
         }
-
-
-        // for (let bucket of oldBuckets) {
-        //     debugger
-        //     while (bucket != null) {
-        //         // if (!bucket.head) continue;
-        //         let bucketSize = bucket.size();
-        //         for (let i = 0; i < bucketSize; i++) {
-        //             let item = bucket.getHead().value;
-        //             bucket.removeAt(0);
-
-        //             this.set(item.key, item.value);
-        //         }
-        //     }
-        // }
     }
 
 }
@@ -183,12 +168,13 @@ test.set('orangem', 'orange');
 test.set('orangen', 'orange');
 console.log(test.buckets);
 
-console.log(test.get('orangenoo'));
-console.log(test.get('orangen'));
-console.log(test.has('appleo'));
+console.log(test.get('orangenoo')); // null
+console.log(test.get('orangen')); // orange
 
-console.log(test.remove('oranga'));
-console.log(test.remove('oran'));
+console.log(test.has('appleo')); // false
+
+console.log(test.remove('oranga')); // true
+console.log(test.remove('oran')); // false
 console.log(test.buckets);
 
 console.log(test.length());
@@ -199,12 +185,3 @@ console.log(test.length());
 console.log(test.keys());
 console.log(test.values());
 console.log(test.entries());
-
-
-// const testLink = new LinkedList();
-// testLink.append('Hello')
-// testLink.append('Hello2')
-// testLink.removeAt(0)
-// testLink.removeAt(0)
-// console.log(testLink);
-// console.log(testLink.getHead());
